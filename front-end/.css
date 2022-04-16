@@ -1,0 +1,79 @@
+:root {
+  --childPadding: 5px;
+  --childMargin: 5px;
+  --get-color: rgb(5, 152, 250);
+  --post-color: green;
+  --put-color: yellow;
+  --delete-color: red;
+}
+#addContainer {
+  position: fixed;
+}
+.container {
+  display: flex;
+  padding: var(--childPadding) * 2;
+  /* align-items: center; */
+}
+.request {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--childPadding);
+  margin: var(--childMargin);
+}
+button {
+  padding: var(--childPadding);
+  margin: var(--childMargin);
+  cursor: pointer;
+}
+input {
+  height: 2em;
+  /* margin-bottom: var(--childMargin); */
+}
+select {
+  height: 2em;
+  margin-bottom: var(--childMargin);
+}
+.response {
+  background-color: rgb(213, 213, 213);
+  flex-grow: 1;
+  padding: var(--childPadding);
+  margin: var(--childMargin);
+}
+.headersOpts {
+  display: flex;
+  align-items: center;
+}
+.headersVals {
+  display: flex;
+  flex-direction: column;
+}
+.headerPair {
+  display: flex;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+.stretch {
+  flex-grow: 2;
+}
+/* methods+methodColorSuffix */
+.POST-color {
+  background-color: var(--post-color);
+}
+.PUT-color {
+  background-color: var(--put-color);
+}
+.DELETE-color {
+  background-color: var(--delete-color);
+}
+.GET-color {
+  background-color: var(--get-color);
+}
+.highlight-input {
+  border-color: red;
+}
+
+button.short {
+  height: 2em;
+}

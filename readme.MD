@@ -19,3 +19,7 @@ start both front-end and back-end with
 ```
 docker-compose up
 ```
+
+# TODO
+
+I've used nginx so I don't have to deal with CORS. I'll work with CORS later if I have time~~

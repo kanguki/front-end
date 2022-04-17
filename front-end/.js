@@ -20,7 +20,13 @@ const headers = {
 };
 let containers = document.getElementById("containers");
 
-function addContainer() {
+
+addContainer(methods.GET, "/hello")
+addContainer(methods.POST, "/login")
+addContainer(methods.GET, "/")
+addContainer(methods.POST, "/logout")
+
+function addContainer(_method = methods.GET, _uri) {
   //container
   let containerNode = document.createElement("div");
   containerNode.setAttribute("class", container);
@@ -36,6 +42,9 @@ function addContainer() {
     let option = document.createElement("option");
     option.value = m;
     option.text = m;
+    if (_method == m) {
+      option.selected = true
+    }
     methodNode.appendChild(option);
   }
   //method colorize
@@ -51,7 +60,10 @@ function addContainer() {
   let uriNode = document.createElement("input");
   uriNode.setAttribute("class", uri);
   uriNode.setAttribute("type", "url");
-  uriNode.setAttribute("placeholder", "whole url");
+  uriNode.setAttribute("placeholder", "whole url. always start with /");
+  if (_uri) {
+    uriNode.value = _uri
+  }
   requestNode.appendChild(uriNode);
   //headers
   let headersNode = document.createElement("div");

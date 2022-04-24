@@ -5,11 +5,13 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 )
 
 var port = ":80"
 var message = "empty"
 var cookie = "kjadhuytiqwwjek328i23uirwyurywierhiweuryuewur"
+var defaultCookieTimeoutInHour = 5
 
 func login(w http.ResponseWriter, req *http.Request) {
 	if req.Method != http.MethodPost {
@@ -17,7 +19,10 @@ func login(w http.ResponseWriter, req *http.Request) {
 		w.Write([]byte("bad request. method not supported"))
 		return
 	}
-	w.Header().Add("Set-Cookie", cookie+"; path=/; HTTPOnly")
+	w.Header().Add("Set-Cookie", cookie+"; path=/; HTTPOnly; expires="+
+		time.Now().Add(time.Hour*time.
+			Duration(defaultCookieTimeoutInHour)).
+			Format(http.TimeFormat))
 	w.Write([]byte("login success"))
 }
 func logout(w http.ResponseWriter, req *http.Request) {

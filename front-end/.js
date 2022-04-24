@@ -20,11 +20,10 @@ const headers = {
 };
 let containers = document.getElementById("containers");
 
-
-addContainer(methods.GET, "/hello")
-addContainer(methods.POST, "/login")
-addContainer(methods.GET, "/")
-addContainer(methods.POST, "/logout")
+addContainer(methods.GET, "/hello");
+addContainer(methods.POST, "/login");
+addContainer(methods.GET, "/");
+addContainer(methods.POST, "/logout");
 
 function addContainer(_method = methods.GET, _uri) {
   //container
@@ -43,7 +42,7 @@ function addContainer(_method = methods.GET, _uri) {
     option.value = m;
     option.text = m;
     if (_method == m) {
-      option.selected = true
+      option.selected = true;
     }
     methodNode.appendChild(option);
   }
@@ -62,7 +61,7 @@ function addContainer(_method = methods.GET, _uri) {
   uriNode.setAttribute("type", "url");
   uriNode.setAttribute("placeholder", "whole url. always start with /");
   if (_uri) {
-    uriNode.value = _uri
+    uriNode.value = _uri;
   }
   requestNode.appendChild(uriNode);
   //headers
@@ -152,14 +151,16 @@ function addContainer(_method = methods.GET, _uri) {
       }
     }
     let requestBodyV = requestBodyNode.value;
-    callHttpRequest(methodV, uriV, headers, requestBodyV).then(
-      (response) => {
+    callHttpRequest(methodV, uriV, headers, requestBodyV)
+      .then((response) => {
         responseNode.innerHTML = response.data;
-      },
-      (e) => {
-        responseNode.innerHTML = `error: ${e}`;
-      }
-    );
+      })
+      .catch((e) => {
+        if (e.response) {
+          responseNode.innerHTML = e.response.data;
+        }
+        console.log(e);
+      });
   });
 
   //response
